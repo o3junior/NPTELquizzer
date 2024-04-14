@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forest Management Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #222; /* Very dark grey */
+            color: #fff; /* White text */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #quiz-box {
+            background-color: #333; /* Dark grey */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Black shadow */
+            text-align: center;
+        }
+        h2 {
+            margin-top: 0;
+        }
+        .option {
+            display: block;
+            margin: 10px auto;
+            padding: 10px;
+            width: 80%;
+            background-color: #444; /* Dark grey */
+            border: 1px solid #888; /* Light grey border */
+            border-radius: 5px;
+            color: #fff; /* White text */
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            
+        }
+        .option:hover {
+            background-color: #555; /* Darker grey on hover */
+        }
+        #submit-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #007bff; /* Blue */
+            border: none;
+            border-radius: 5px;
+            color: #fff; /* White text */
+            cursor: pointer;
+        }
+        #submit-btn:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        .selected{
+            background-color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <div id="quiz-box">
+        <h2 id="question"></h2>
+        <div id="options">
+            <button class="option" id="label1" value="0"></button><br>
+            <button class="option" id="label2" value="1"></button><br>
+            <button class="option" id="label3" value="2"></button><br>
+            <button class="option" id="label4" value="3"></button><br>
+        </div>
+        <button id="submit-btn" disabled>Submit</button>
+        <button id="next-btn" disabled>Next Question</button>
+        <button id="stop-btn">Stop</button>
+        <div id="scorecard">Score: <span id="score">0</span></div>
+        <div id="correct-answer"></div>
+    </div>
+
+    <script src="Questions.js"></script>
+</body>
+</html>
