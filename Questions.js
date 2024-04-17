@@ -45,14 +45,15 @@ document.addEventListener("DOMContentLoaded", function () {
             const currentOptions = options[currentQuestionIndex];
 
             questionElement.textContent = currentQuestion;
+            randomOptions=generateRandomNumbers(options[currentQuestionIndex].length);
             for (let i = 0; i < options[currentQuestionIndex].length; i++) {
-                optionElements[i].textContent = currentOptions[i];
-                optionElements[i].classList.remove('selected'); // Remove selected class
-                optionElements[i].disabled = false; // Enable options
+                optionElements[i].textContent = currentOptions[randomOptions[i]];
+                optionElements[i].classList.remove('selected'); 
+                optionElements[i].disabled = false; 
             }
             correctAnswerElement.textContent = "";
             enableOptions(!submitted);
-            submitBtn.disabled = true; // Disable submit button by default
+            submitBtn.disabled = true; 
         } else {
             endQuiz();
         }
@@ -65,12 +66,13 @@ document.addEventListener("DOMContentLoaded", function () {
         const selectedOptionIndex = parseInt(selectedOption.value);
         const correctAnswer = correct[currentQuestionIndex];
 
-        if (options[currentQuestionIndex][selectedOptionIndex] === correctAnswer) {
+        if (options[currentQuestionIndex][randomOptions[selectedOptionIndex]] === correctAnswer) {
             score++;
         } 
         correctAnswerElement.textContent = `Correct answer: ${correct[currentQuestionIndex]}`;
 
-        scoreElement.textContent = score+"/"+total++;;
+        scoreElement.textContent = score+"/"+total++;
+        randomOptions=[];
         submitted = true;
         submitBtn.disabled = true;
         nextBtn.disabled = false;
@@ -78,7 +80,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function endQuiz() {        
-            // Redirect to another HTML page
             window.location.href = "Result.html?score=" + score + "&total=" + (total-1);
         }
     
@@ -93,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!submitted) {
                 optionElements.forEach(opt => opt.classList.remove('selected'));
                 option.classList.add('selected');
-                submitBtn.disabled = false; // Enable submit button once an option is clicked
+                submitBtn.disabled = false; 
             }
         });
     });
@@ -101,20 +102,21 @@ document.addEventListener("DOMContentLoaded", function () {
     submitBtn.addEventListener("click", checkAnswer);
     nextBtn.addEventListener("click", () => {
         currentQuestionIndex = randomOrder[++randomIndex];        
-        submitted = false; // Reset submitted status
-        submitBtn.disabled = true; // Disable submit button for the next question
-        nextBtn.disabled = true; // Disable next button until options are clicked
+        submitted = false;
+        submitBtn.disabled = true; 
+        nextBtn.disabled = true; 
         displayQuestion();
     });
     stopBtn.addEventListener("click", endQuiz);
 
     randomOrder = generateRandomNumbers(questions.length);
     randomIndex = 0;
+    let randomOptions=[];
     score = 0;
     submitted = false;
     currentQuestionIndex = randomOrder[randomIndex];
     scoreElement.textContent = score+"/"+total++;
-    nextBtn.disabled = true; // Disable next button initially
+    nextBtn.disabled = true; 
     displayQuestion();
 });
 
